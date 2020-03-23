@@ -3,15 +3,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const config = require('../config/key'); // mongoURI 가져오기
 const { User } = require('../models/User'); // 유저모델 가져오기
+const { auth } = require('../middleware/auth'); // auth 미들웨어 가져오기
 
 mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false // 오류 막기 위함
 }).then(() => console.log('MongoDB connected...')).catch(err => console.log(err));
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 // 회원가입
 router.post('/register', (req, res) => {
@@ -56,6 +52,22 @@ router.post('/login', (req, res) => {
               res.cookie("jwt", user.token).status(200).json({ loginSuccess: true, userId: user._id, jwt: user.token });
           });
       });
+  });
+});
+
+// 인증
+router.get('/auth', auth, (req, res) => { // auth라는 미들웨어 추가. 엔드포인트에서 request받고 callback전에 중간 처리.
+
+  // 여기가지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True 라는 말.
+  res.status(200).json({
+      _id: req.user._id, // auth 미들웨어 통해 가져왔기 때문에 사용 가능
+      isAdmin: req.user.role === 0 ? false : true, // role : 0 -> 일반유저
+      isAuth: true,
+      email: req.user.email,
+      name: req.user.name,
+      lastname: req.user.lastname,
+      role: req.user.role,
+      image: req.user.image
   });
 });
 module.exports = router;
