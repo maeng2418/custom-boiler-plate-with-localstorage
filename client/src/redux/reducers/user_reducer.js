@@ -1,5 +1,5 @@
 import {
-    LOGIN_USER
+    LOGIN_USER, REGISTER_USER,
 } from 'redux/actions/types';
 
 export default function (state={}, action) {
@@ -7,6 +7,9 @@ export default function (state={}, action) {
         case LOGIN_USER:
             localStorage.setItem("jwt", action.payload.jwt);
             return { ...state, loginSuccess: action.payload };
+        
+        case REGISTER_USER:
+            return { ...state, register: action.payload }
 
         default:
             return state;
