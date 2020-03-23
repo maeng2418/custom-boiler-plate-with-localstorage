@@ -36,4 +36,4 @@ const userSchema = mongoose.Schema({
 
 const User = mongoose.model('User', userSchema); // schema를 모델로 감싸줌. (모델이름, 스키마)
 
-module.exprots = {User}; // 다른곳에서도 쓸 수 있음. 
+module.exports = {User}; // 다른곳에서도 쓸 수 있음.
