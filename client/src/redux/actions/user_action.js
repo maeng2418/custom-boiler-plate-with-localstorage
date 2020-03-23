@@ -3,6 +3,7 @@ import {
     LOGIN_USER,
     REGISTER_USER,
     LOGOUT_USER,
+    AUTH_USER,
 } from './types';
 
 const loginUser = (dataTosubmit) => {
@@ -29,7 +30,8 @@ const registerUser = (dataTosubmit) => {
 
 const logout = () => {
 
-    const request = axios.get('/api/users/logout')
+    const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
+    const request = axios.get('/api/users/logout',{headers: {'Authorization': `JWT ${jwt}`}})
         .then(response => response.data)
 
     return {
@@ -38,10 +40,23 @@ const logout = () => {
     }
 }
 
+const auth = () => {
+
+    const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
+    const request = axios.get('/api/users/auth',{headers: {'Authorization': `JWT ${jwt}`}})
+        .then(response => response.data)
+
+    return {
+        type: AUTH_USER,
+        payload: request
+    }
+}
+
 const userActionCreators = {
     loginUser,
     registerUser,
     logout,
+    auth,
 };
 
 export default userActionCreators;
