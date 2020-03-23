@@ -3,4 +3,5 @@ import user from './user_reducer';
 
 export default combineReducers({
     user,
+    // 다른 리듀서 만들게되면 여기에 넣어줌.
 });
