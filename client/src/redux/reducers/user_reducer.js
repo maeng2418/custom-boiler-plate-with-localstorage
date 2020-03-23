@@ -1,5 +1,5 @@
 import {
-    LOGIN_USER, REGISTER_USER,
+    LOGIN_USER, REGISTER_USER, LOGOUT_USER,
 } from 'redux/actions/types';
 
 export default function (state={}, action) {
@@ -10,6 +10,9 @@ export default function (state={}, action) {
         
         case REGISTER_USER:
             return { ...state, register: action.payload }
+        
+        case LOGOUT_USER:
+            return { ...state, loginSuccess: null }
 
         default:
             return state;
