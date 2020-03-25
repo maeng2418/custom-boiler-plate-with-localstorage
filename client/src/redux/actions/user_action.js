@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { USER_SERVER } from 'components/Config.js';
 import {
     LOGIN_USER,
     REGISTER_USER,
@@ -8,7 +9,7 @@ import {
 
 const loginUser = (dataTosubmit) => {
 
-    const request = axios.post('/api/users/login', dataTosubmit)
+    const request = axios.post(`${USER_SERVER}/login`, dataTosubmit)
     .then(response => response.data)
 
     return {
@@ -19,7 +20,7 @@ const loginUser = (dataTosubmit) => {
 
 const registerUser = (dataTosubmit) => {
     
-    const request = axios.post('/api/users/register', dataTosubmit)
+    const request = axios.post(`${USER_SERVER}/register`, dataTosubmit)
     .then(response => response.data)
 
     return {
@@ -31,7 +32,7 @@ const registerUser = (dataTosubmit) => {
 const logout = () => {
 
     const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
-    const request = axios.get('/api/users/logout',{headers: {'Authorization': `JWT ${jwt}`}})
+    const request = axios.get(`${USER_SERVER}/logout`,{headers: {'Authorization': `JWT ${jwt}`}})
         .then(response => response.data)
 
     return {
@@ -43,7 +44,7 @@ const logout = () => {
 const auth = () => {
 
     const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
-    const request = axios.get('/api/users/auth',{headers: {'Authorization': `JWT ${jwt}`}})
+    const request = axios.get(`${USER_SERVER}/auth`,{headers: {'Authorization': `JWT ${jwt}`}})
         .then(response => response.data)
 
     return {
