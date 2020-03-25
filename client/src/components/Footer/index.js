@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './styles.module.scss';
 
 const Footer = () => {
   return (
-    <div>
-      
-    </div>
+    <footer className={styles.footer}>
+     <p> Happy Coding </p>
+  </footer>
   );
 }
 
