@@ -1,14 +1,18 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-
+// iPhone(320) S5(360) iPhone6/7/8/X(375) iPhone+(414) iPad(768) iPad-Pro(1024)
+// xs   <   sm   <   md   <   lg   <   xl   <   xxl
+//     576      768      992      1200     1600
+// span 24를 최대로 본다.
+// offset은 앞에 공간.
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 6 },
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 16 },
+    sm: { span: 18 },
   },
 };
 const tailFormItemLayout = {
@@ -18,64 +22,54 @@ const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 24,
+      offset: 0,
     },
   },
 };
 
 const RegisterPage = (props) => (
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
-    <Form style={{ minWidth: '375px', display: 'flex', flexDirection: 'column' }} {...formItemLayout} onSubmit={props.onSubmitHandler} >
-      <Form.Item required label="Name">
+  <div style={{ display: 'flex', margin: 'auto' }}>
+    <Form hideRequiredMark={true} style={{ minWidth: '360px', display: 'flex', flexDirection: 'column' }} {...formItemLayout} onFinish={props.onSubmitHandler} >
+      <Form.Item name="name" required label="Name" labelAlign="left" hasFeedback>
         <Input
           id="name"
           placeholder="Enter your name"
           type="text"
-          value={props.Name}
-          onChange={props.onNameHandler}
         />
       </Form.Item>
-      <Form.Item required label="Last Name">
+      <Form.Item name="lastName" required label="Last Name" labelAlign="left" hasFeedback>
         <Input
           id="lastName"
           placeholder="Enter your Last Name"
           type="text"
-          value={props.LastName}
-          onChange={props.onLastNameHandler}
         />
       </Form.Item>
-      <Form.Item required label="Email" hasFeedback>
+      <Form.Item name="email" required label="Email" labelAlign="left" hasFeedback>
         <Input
           id="email"
           placeholder="Enter your Email"
           type="email"
-          value={props.Email}
-          onChange={props.onEmailHandler}
         />
       </Form.Item>
-      <Form.Item required label="Password" hasFeedback>
+      <Form.Item name="password" required label="Password" labelAlign="left" hasFeedback>
                 <Input
                   id="password"
                   placeholder="Enter your password"
                   type="password"
-                  value={props.Password}
-                  onChange={props.onPasswordHandler}
                 />
               </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
+              <Form.Item name="confirmPassword" required label="Confirm" labelAlign="left" hasFeedback>
                 <Input
                   id="confirmPassword"
                   placeholder="Enter your confirmPassword"
                   type="password"
-                  value={props.ConfirmPassword}
-                  onChange={props.onConfirmPasswordHandler}
                 />
               </Form.Item>
 
               <Form.Item {...tailFormItemLayout}>
-                <Button onClick={props.onSubmitHandler} style={{ minWidth: '100%' }} type="primary">
+                <Button htmlType="submit" style={{ minWidth: '100%' }} type="primary">
                   회원 가입
                 </Button>
               </Form.Item>

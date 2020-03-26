@@ -43,8 +43,12 @@
     }
 }
 
-
-@media (max-width: 767px) {
+// iPhone(320) S5(360) iPhone6/7/8/X(375) iPhone+(414) iPad(768) iPad-Pro(1024)
+@media (max-width: 768px) {
+    .menuLogo {
+        margin: auto;
+        text-align: center;
+    }
     .menuLogo a {
         margin-left: -20px;
         padding: 10px 20px;
@@ -55,6 +59,9 @@
     }
 
     .menuMobileButton {
-      display: inline-block !important;
+      display: block !important;
+      position: fixed;
+      top: 20px;
+      right: 20px;
     }
 }

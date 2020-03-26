@@ -8,7 +8,7 @@ import {
 } from './types';
 
 const loginUser = (dataTosubmit) => {
-
+    dataTosubmit.remember ? localStorage.setItem('email', dataTosubmit.email) : localStorage.clear('email');
     const request = axios.post(`${USER_SERVER}/login`, dataTosubmit)
     .then(response => response.data)
 

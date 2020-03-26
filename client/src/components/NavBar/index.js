@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button } from 'antd';
@@ -20,7 +19,7 @@ const NavBar = () => {
   return (
     <nav className={styles.menuContainer}>
       <div className={styles.menuLogo}>
-        <Link to="/" >Logo</Link>
+        <a href="/" >Logo</a>
       </div>
       <div className={styles.menuLeft}>
         <LeftMenu mode="horizontal" />
