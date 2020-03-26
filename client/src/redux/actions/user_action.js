@@ -1,11 +1,14 @@
 import axios from 'axios';
-import { USER_SERVER } from 'components/Config.js';
+import { USER_SERVER } from 'components/Config';
+import { setHeader } from 'utils/setHeader';
 import {
     LOGIN_USER,
     REGISTER_USER,
     LOGOUT_USER,
     AUTH_USER,
 } from './types';
+
+
 
 const loginUser = (dataTosubmit) => {
     dataTosubmit.remember ? localStorage.setItem('email', dataTosubmit.email) : localStorage.clear('email');
@@ -31,8 +34,7 @@ const registerUser = (dataTosubmit) => {
 
 const logout = () => {
 
-    const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
-    const request = axios.get(`${USER_SERVER}/logout`,{headers: {'Authorization': `JWT ${jwt}`}})
+    const request = axios.get(`${USER_SERVER}/logout`, setHeader())
         .then(response => response.data)
 
     return {
@@ -43,8 +45,7 @@ const logout = () => {
 
 const auth = () => {
 
-    const jwt = localStorage.getItem('jwt') ? localStorage.getItem('jwt') : null;
-    const request = axios.get(`${USER_SERVER}/auth`,{headers: {'Authorization': `JWT ${jwt}`}})
+    const request = axios.get(`${USER_SERVER}/auth`, setHeader())
         .then(response => response.data)
 
     return {

@@ -48,8 +48,8 @@ router.post('/login', (req, res) => {
           userInfo.generateToken((err, user) => {
               if (err) return res.status(400).send(err);
               
-              // 쿠키에 토큰을 저장하고 client로 쿠키를 전달하여 로컬스토리지에 저장하도록 한다.
-              res.cookie("jwt", user.token).status(200).json({ loginSuccess: true, userId: user._id, jwt: user.token });
+              // client로 쿠키를 전달하여 로컬스토리지에 저장하도록 한다.
+              res.status(200).json({ loginSuccess: true, userId: user._id, jwt: user.token });
           });
       });
   });
